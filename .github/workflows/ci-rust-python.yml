@@ -16,13 +16,13 @@ jobs:
       with:
         components: clippy, rustfmt
     - name: Check formatting
-      run: cargo fmt --check || true
+      run: cargo fmt --check
     - name: Build
       run: cargo build --verbose
     - name: Clippy
-      run: cargo clippy -- -D warnings || true
+      run: cargo clippy -- -D warnings
     - name: Run tests
-      run: cargo test --verbose || true
+      run: cargo test --verbose
 
   python:
     runs-on: ubuntu-latest
@@ -40,6 +40,6 @@ jobs:
         if [ -f setup.py ]; then pip install -e .; fi
         if [ -f pyproject.toml ]; then pip install -e .; fi
     - name: Lint
-      run: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics || true
+      run: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
     - name: Test
-      run: python -m pytest -x -v || true
+      run: python -m pytest -x -v
